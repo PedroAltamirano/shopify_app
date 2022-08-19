@@ -42,7 +42,7 @@ function ModalExample() {
             </DropZone>
             <Checkbox
               checked={checked}
-              label="Overwrite existing customers that have the same email or phone"
+              label="Overwrite existing customers that have the same email"
               onChange={handleCheckbox}
             />
           </Stack>
