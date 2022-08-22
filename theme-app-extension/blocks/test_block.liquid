@@ -1,0 +1,28 @@
+<div>
+  <a href="{{ section.settings.link }}" >
+    <p>
+      {{ section.settings.text | escape }}
+    </p>
+  </a>
+</div>
+{% comment %} {% render "test_snipet", collection: 1,2,3 %} {% endcomment %}
+
+{% schema %}
+{
+  "name": "Test block",
+  "target": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement text",
+      "default": "Announce something here"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Announcement link"
+    }
+  ]
+}
+{% endschema %}
