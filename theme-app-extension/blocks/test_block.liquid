@@ -1,27 +1,24 @@
 <div>
-  <a href="{{ section.settings.link }}" >
-    <p>
-      {{ section.settings.text | escape }}
-    </p>
-  </a>
+  {%- if block.settings.text -%}
+    <h4>{{ block.settings.text | escape }}</h4>
+  {%- endif -%}
+  {%- render "test_snippet", title: 'Hello world!' -%}
+  <div class="stars__div">
+    {%- render "stars_snippet" -%}
+  </div>
 </div>
-{% comment %} {% render "test_snipet", collection: 1,2,3 %} {% endcomment %}
 
 {% schema %}
 {
   "name": "Test block",
   "target": "section",
+  "stylesheet": "stars.css",
   "settings": [
     {
       "type": "text",
       "id": "text",
       "label": "Announcement text",
       "default": "Announce something here"
-    },
-    {
-      "type": "url",
-      "id": "link",
-      "label": "Announcement link"
     }
   ]
 }

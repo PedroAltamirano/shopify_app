@@ -1,0 +1,4 @@
+{% assign stars = "1,2,3" | split: ',' %}
+{%- for star in stars -%}
+  <p>{{ star }}</p>
+{%- endfor -%}
