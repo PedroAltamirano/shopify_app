@@ -8,6 +8,8 @@ import "dotenv/config";
 import applyAuthMiddleware from "./middleware/auth.js";
 import verifyRequest from "./middleware/verify-request.js";
 
+import sequelize from "./database/connection.js";
+
 const USE_ONLINE_TOKENS = true;
 const TOP_LEVEL_OAUTH_COOKIE = "shopify_top_level_oauth";
 
@@ -73,6 +75,24 @@ export async function createServer(
 
     const countData = await Product.count({ session });
     res.status(200).send(countData);
+  });
+
+  app.get("/add_click", async (req, res) => {
+    const { type } = req.query;
+
+    await sequelize.models.Clicks.create({
+      click_type: type,
+    });
+
+    res.status(200).send({ message: "ok" });
+  });
+
+  app.get("/count_click", async (req, res) => {
+    const { type } = req.query;
+
+    const count = await sequelize.Clicks.findAll();
+
+    res.status(200).send(`platform clicks: ${count}`);
   });
 
   app.post("/graphql", verifyRequest(app), async (req, res) => {
