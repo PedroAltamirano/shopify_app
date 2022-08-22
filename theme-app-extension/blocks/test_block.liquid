@@ -6,6 +6,8 @@
   <div class="stars__div">
     {%- render "stars_snippet", icon: block.settings.icon -%}
   </div>
+  <a href="{{ block.settings.linkok }}" class="button">ok</a>
+  <a href="{{ block.settings.linkcancel }}" class="button">cancel</a>
 </div>
 
 {% schema %}
@@ -25,6 +27,16 @@
       "id": "icon",
       "label": "Custom icon",
       "default": "⭐"
+    },
+    {
+      "id": "linkok",
+      "type": "url",
+      "label": "Button link"
+    },
+    {
+      "id": "linkcancel",
+      "type": "url",
+      "label": "Button link"
     }
   ]
 }
