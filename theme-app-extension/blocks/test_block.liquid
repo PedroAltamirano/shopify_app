@@ -4,7 +4,7 @@
   {%- endif -%}
   {%- render "test_snippet", title: 'Hello world!' -%}
   <div class="stars__div">
-    {%- render "stars_snippet" -%}
+    {%- render "stars_snippet", icon: block.settings.icon -%}
   </div>
 </div>
 
@@ -19,6 +19,12 @@
       "id": "text",
       "label": "Announcement text",
       "default": "Announce something here"
+    },
+    {
+      "type": "text",
+      "id": "icon",
+      "label": "Custom icon",
+      "default": "⭐"
     }
   ]
 }
