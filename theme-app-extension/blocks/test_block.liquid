@@ -6,8 +6,8 @@
   <div class="stars__div">
     {%- render "stars_snippet", icon: block.settings.icon -%}
   </div>
-  <a href="{{ block.settings.linkok }}" class="button">ok</a>
-  <a href="{{ block.settings.linkcancel }}" class="button">cancel</a>
+  <button class="button" id='ok_btn'>ok</button>
+  <button class="button" id='cancel_btn'>cancel</button>
 </div>
 
 {% schema %}
@@ -15,6 +15,7 @@
   "name": "Test block",
   "target": "section",
   "stylesheet": "stars.css",
+  "javascript": "clickers.js",
   "settings": [
     {
       "type": "text",
@@ -27,16 +28,6 @@
       "id": "icon",
       "label": "Custom icon",
       "default": "⭐"
-    },
-    {
-      "id": "linkok",
-      "type": "url",
-      "label": "Button link"
-    },
-    {
-      "id": "linkcancel",
-      "type": "url",
-      "label": "Button link"
     }
   ]
 }

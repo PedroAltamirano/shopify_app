@@ -77,7 +77,16 @@ export async function createServer(
     res.status(200).send(countData);
   });
 
-  app.get("/add_click", async (req, res) => {
+  app.post("/graphql", verifyRequest(app), async (req, res) => {
+    try {
+      const response = await Shopify.Utils.graphqlProxy(req, res);
+      res.status(200).send(response.body);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  });
+
+  app.get("/api/add_click", async (req, res) => {
     const { type } = req.query;
 
     await sequelize.models.Clicks.create({
@@ -87,21 +96,9 @@ export async function createServer(
     res.status(200).send({ message: "ok" });
   });
 
-  app.get("/count_click", async (req, res) => {
-    const { type } = req.query;
-
+  app.get("/api/count_click", async (req, res) => {
     const count = await sequelize.Clicks.findAll();
-
     res.status(200).send(`platform clicks: ${count}`);
-  });
-
-  app.post("/graphql", verifyRequest(app), async (req, res) => {
-    try {
-      const response = await Shopify.Utils.graphqlProxy(req, res);
-      res.status(200).send(response.body);
-    } catch (error) {
-      res.status(500).send(error.message);
-    }
   });
 
   app.use(express.json());
